@@ -15,7 +15,7 @@ function App() {
     return (<div className={"App"}>
             Controlled:<OnOff on={switchOn} onChange={setSwitchOn}/>
             Uncontrolled:<UncontrolledOnOff onChange={setSwitchOn}/>{switchOn.toString()}<br/>
-            Controlled:<Accordion titleValue={"Menu"} onChange={()=>{setAccordionCollapsed(!accordionCollapsed)} } collapsed={accordionCollapsed}/>
+            {/*Controlled:<Accordion titleValue={"Menu"} onChange={()=>{setAccordionCollapsed(!accordionCollapsed)} }  collapsed={accordionCollapsed}/>*/}
             Uncontrolled:<UncontrolledAccordion titleValue={"Menu"}/>
            Controlled:<Rating value={ratingValue} onClick={setRatingValue}/>
             Uncontrolled:<UncontrolledRating onChange={setRatingValue}/>
