@@ -34,7 +34,7 @@ export function Select(props: SelectPropsType) {
             for (let i = 0; i < props.items.length; i++) {
                 if (props.items[i].value === hoveredElementItem) {
                     const pretendentElement = e.key === "ArrowDown"
-                        ? props.items[i + 1]
+                        ? props.items[i  + 1]
                         : props.items[i - 1]
                     if (pretendentElement) {
                         props.onChange(pretendentElement.value)
