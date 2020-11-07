@@ -17,7 +17,7 @@ export const WithValue = () => {
         <Select items={[
             {value: "1", title: "Kiev"},
             {value: "2", title: "Minsk"},
-            {value: "3", title: "Moscow"}]}
+            {value: "3", title: "Moscow"}] }
                 onChange={setValue}
                 value={value}
         />
