@@ -1,7 +1,7 @@
-import React, { useMemo, useState } from 'react';
+import React, { useCallback, useMemo, useState } from 'react';
 
 export default {
-    title: 'Use.memo demo',
+    title: 'UseMemoUseCallback demo',
 }
 
 
@@ -47,7 +47,7 @@ export const DifficultCountingExample = () => {
 }
 
 const UsersSecret = (props: { users: Array<string> }) => {
-   debugger
+    debugger
     return <div>{
         props.users.map((u, i) => <div key={i}>{u}</div>)
 
@@ -65,10 +65,10 @@ export const HelpsForReactMemo = () => {
         return newArray
     }, [users])
 
-    const addUser=()=>{
-        const newUsers=[...users, 'Masha'+new Date().getTime()]
+    const addUser = () => {
+        const newUsers = [...users, 'Masha' + new Date().getTime()]
         setUsers(newUsers)
-     }
+    }
     return <>
         <button onClick={() => setCounter(counter + 1)}></button>
         <button onClick={addUser}>add user</button>
@@ -77,3 +77,43 @@ export const HelpsForReactMemo = () => {
     </>
 
 }
+
+export const LikeUseCallbackMemo = () => {
+    console.log("HelpsForReactMemo")
+    const [counter, setCounter] = useState(0)
+    const [books, setBooks] = useState(['React', 'JS', 'CSS', 'HTML'])
+
+
+    const memoizedAddBook = useMemo(() => {
+        return () => {
+            const newBooks = [...books, 'Angular' + new Date().getTime()]
+            setBooks(newBooks)
+        }
+    }, [books])
+
+    const memoizedAddBook2 = useCallback(() => {
+        console.log(books)
+        const newBooks = [...books, 'Angular' + new Date().getTime()]
+        setBooks(newBooks)
+    }, [books])
+
+
+    return <>
+        <button onClick={() => setCounter(counter + 1)}></button>
+        {counter}
+        <Books addBook={memoizedAddBook2} />
+    </>
+
+}
+type BooksSecretPropsType = {
+    addBook: () => void
+}
+
+const BooksSecret = (props: BooksSecretPropsType) => {
+    debugger
+    console.log('BooksSecret')
+    return <div>
+        <button onClick={props.addBook}>add book</button>
+    </div>
+}
+const Books = React.memo(BooksSecret)
